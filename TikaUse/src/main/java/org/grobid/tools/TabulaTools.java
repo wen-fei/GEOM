@@ -3,10 +3,7 @@ package org.grobid.tools;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.junit.Test;
-import technology.tabula.ObjectExtractor;
-import technology.tabula.Page;
-import technology.tabula.Table;
-import technology.tabula.TextChunk;
+import technology.tabula.*;
 import technology.tabula.extractors.BasicExtractionAlgorithm;
 import technology.tabula.extractors.SpreadsheetExtractionAlgorithm;
 import technology.tabula.writers.CSVWriter;
@@ -29,8 +26,8 @@ public class TabulaTools {
     public static  void pagesInFile(File file) throws IOException
     {
         PDDocument document = PDDocument .load(file);
-        int pageCount=document.getNumberOfPages();
-        BasicExtractionAlgorithm bel = new BasicExtractionAlgorithm(document);
+        int pageCount = document.getNumberOfPages();
+//        BasicExtractionAlgorithm bel = new BasicExtractionAlgorithm(document);
         ObjectExtractor oe = new ObjectExtractor(document);
         Page page = null;
         for(int currentPage = 1; currentPage <= pageCount; currentPage++)
@@ -68,12 +65,28 @@ public class TabulaTools {
         /*Counting num of rectangles available*/
         List<Table> tablist = new ArrayList<Table>();
         tablist = (List<Table>)sea.extract(page);
-        int tableNum = 0;
+//        int tableNum = 0;
         Iterator<Table> itr = tablist.iterator();
         while(itr.hasNext()){
-            Table t = itr.next();
-            convertToCSV(t, pageNum, ++tableNum);
-            System.out.println(t.getExtractionAlgorithm().toString());
+            Table   t = itr.next();
+//            convertToCSV(t, pageNum, ++tableNum);
+//            List<List<RectangularTextContainer>> rlist = t.getRows();
+//            Iterator<List<RectangularTextContainer>> rl = rlist.iterator();
+//            while(rl.hasNext()){
+//              List<RectangularTextContainer> rs = rl.next();
+//              for(RectangularTextContainer rm : rs){
+//                  System.out.println("==============>" +  rm.getText() + "<===================");
+//              }
+//            }
+            List<List<RectangularTextContainer>> clist = t.getCols();
+            Iterator<List<RectangularTextContainer>> cl = clist.iterator();
+            while(cl.hasNext()){
+                List<RectangularTextContainer> cs = cl.next();
+                for(RectangularTextContainer cm : cs){
+                    System.out.println("---------->" +  cm.getText() + "<----------");
+                }
+            }
+//            System.out.println(t.getExtractionAlgorithm().toString());
         }
     }
 
