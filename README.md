@@ -21,3 +21,6 @@ Building Knowledge Graph based PICO  for ERM
    在windows 在子进程中使用echo，需要设置 shell =True，因为 echo 不是单独的命令，而是window CMD 内置的命令。并且，需要注意，只有在绝对需要的情况下才使用shell=True
 
    找到 subprocess.py脚本，将对应行加上shell=true 参数。该问题解决。
+## 新论文
+自动抽取pico
+使用框架：tensorflow
