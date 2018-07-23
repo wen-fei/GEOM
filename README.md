@@ -23,4 +23,4 @@ Building Knowledge Graph based PICO  for ERM
    找到 subprocess.py脚本，将对应行加上shell=true 参数。该问题解决。
 ## 新论文
 自动抽取pico
-使用框架：tensorflow
+使用框架：tensorflow python=3.6
